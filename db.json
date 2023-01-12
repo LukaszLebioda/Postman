@@ -1,0 +1,64 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "The Count of Monte Cristo",
+      "author": "Alexandre Dumas"
+    },
+    {
+      "id": 2,
+      "title": "The Lord of the Rings",
+      "author": "J.R.R. Tolkien"
+    },
+    {
+      "id": 3,
+      "title": "The Stormlight Archive",
+      "author": "Brandon Sanderson"
+    },
+    {
+      "id": 4,
+      "title": "The Day of the Jackal",
+      "author": "Frederick Forsyth"
+    },
+    {
+      "id": 5,
+      "title": "Hyperion",
+      "author": "Dan Simmons"
+    },
+    {
+      "id": 6,
+      "title": "Harry Hole",
+      "author": "Jo Nesbo"
+    },
+    {
+      "id": 7,
+      "title": "A Song of Ice and Fire",
+      "author": "Geroge R.R. Martin"
+    },
+    {
+      "id": 8,
+      "title": "Mister Automobile",
+      "author": "Zbigniew Nienacki"
+    },
+    {
+      "id": 9,
+      "title": "The Mysterious Island",
+      "author": "Jules Verne"
+    },
+    {
+      "id": 10,
+      "title": "The Deluge",
+      "author": "Henryk Sienkiewicz"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

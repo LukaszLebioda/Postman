@@ -1,0 +1,26 @@
+{
+  "name": "coding40-postman",
+  "version": "1.0.0",
+  "description": "Some Postman practic",
+  "main": "index.js",
+  "scripts": {
+    "server": "json-server --watch db.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LukaszLebioda/Coding40-Postman.git"
+  },
+  "keywords": [
+    "Postman",
+    "testing"
+  ],
+  "author": "Łukasz Lebioda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LukaszLebioda/Coding40-Postman/issues"
+  },
+  "homepage": "https://github.com/LukaszLebioda/Coding40-Postman#readme",
+  "dependencies": {
+    "json-server": "^0.17.1"
+  }
+}

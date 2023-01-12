@@ -1,0 +1,18 @@
+BYŁO: "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+JEST: "scripts": {
+    "server": "json-server --watch db.json"
+  },
+  CZYLI: npm run server;
+
+I. Aplikacja JSON-SERVER symuluje bazę danych - tworzy plik db.json z postami. Dokumentacja: https://github.com/typicode/json-server. 
+
+==>> FOTO1
+II. Aby pobrać POSTY:
+1. Musimy znać hosta: http://localhost i port, na którym działa: 3000.
+2. Wpisując w przeglądarkę http://localhost:3000/posts pobieramy posty. Przeglądarka skorzysta z metody HTTP GET. 
+3. A teraz odtworzymy to samo w aplikacji Postman. Wybieramy opcję: Send HTTP Request, podajemy URL: http://localhost:3000 i klikamy SEND. Serwer zwrócił nam wszystkie posty! 
+4. Następnie zapisujemy takie żądanie (nadając mu nazwę, np. "GET all the posts") w folderze, nazywanym KOLEKCJĄ. Takiej kolekcji także nadajemy nazwę, np. Post tests. 
+5. Możemy tworzyć nowe żądania i zapisywać je do tej samej kolekcji, lub tworzyć nowe kolekcje. Np. tworzymy zapytanie o konkretnego posta z id1: http://localhost:3000/posts/1, zapisujemy requesta (GET a single post) i dodajemy do naszej kolekcji.
+6. Możemy filtrować posty, o tak: GET /posts?id=1&id=2. Po pytajniku mamy parę klucz - wartość, natomiast & łączy dwie pary. Czyli w ten sposób pobierzemy posty o ID=1 i ID=2. Następnie bawimy się wynikami w zakładce PARAMS. I ważne hasło: QUERY PARAMS, czyli KRYTERIA FILTROWANIA (/posts?id=1&id=2). Oraz PATH PARAMS (pobieranie konkretnego zasobu) (/posts/1).
