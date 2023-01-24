@@ -49,6 +49,20 @@
       "id": 10,
       "title": "The Deluge",
       "author": "Henryk Sienkiewicz"
+    },
+    {
+      "title": "Strange title",
+      "author": "Strange name",
+      "id": 11
+    },
+    {
+      "author": "S nameeee",
+      "id": 13
+    },
+    {
+      "title": "The Count of Monte Cristo",
+      "author": "Alexandre Dumas",
+      "id": 14
     }
   ],
   "comments": [
