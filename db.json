@@ -63,13 +63,38 @@
       "title": "The Count of Monte Cristo",
       "author": "Alexandre Dumas",
       "id": 14
+    },
+    {
+      "title": "Strange title2",
+      "author": "Strange name2",
+      "id": 15
+    },
+    {
+      "title": "Strange title2",
+      "author": "Strange name2",
+      "id": 16
+    },
+    {
+      "title": "The Count of Monte Cristo",
+      "author": "Alexandre Dumas",
+      "id": 17
     }
   ],
   "comments": [
     {
       "id": 1,
-      "body": "some comment",
+      "body": "vxxsc",
       "postId": 1
+    },
+    {
+      "body": "some comment",
+      "postId": 2,
+      "id": 3
+    },
+    {
+      "body": "some comment",
+      "postId": 2,
+      "id": 4
     }
   ],
   "profile": {
