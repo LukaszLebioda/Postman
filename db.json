@@ -2,13 +2,100 @@
   "posts": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "team": "Red Bull",
+      "driver1": "Max Verstappen",
+      "driver2": "Sergio Perez"
     },
     {
       "id": 2,
-      "title": "json-server2",
-      "author": "typicode2"
+      "team": "Ferrari",
+      "driver1": "Charles Leclerc",
+      "driver2": "Carlos Sainz"
+    },
+    {
+      "team": "Mercedes",
+      "driver1": "Lewis Hamilton",
+      "driver2": "George Russel",
+      "id": 3
+    },
+    {
+      "team": "MacLaren",
+      "driver1": "Lando Norris",
+      "driver2": "Oscar Piastri",
+      "id": 4
+    },
+    {
+      "team": "Aston Martin",
+      "driver1": "Fernando Alonso",
+      "driver2": "Lance Stroll",
+      "id": 5
+    },
+    {
+      "driver1": "Pierre Gasly",
+      "id": 6
+    },
+    {
+      "id": 7,
+      "team": "Williams",
+      "driver1": "Alexander Albon",
+      "driver2": "Logan Sargeant"
+    },
+    {
+      "id": 8
+    },
+    {
+      "id": 9
+    },
+    {
+      "id": 10
+    },
+    {
+      "team": "Cadillac",
+      "driver1": "unknown name",
+      "driver2": "John Doe",
+      "id": 13
+    },
+    {
+      "team": "Cadillac",
+      "driver1": "unknown name",
+      "driver2": "unknown name",
+      "id": 14
+    },
+    {
+      "team": "Cadillac",
+      "driver1": "unknown name",
+      "driver2": "unknown name",
+      "id": 15
+    },
+    {
+      "team": "Cadillac",
+      "driver1": "unknown name",
+      "driver2": "unknown name",
+      "id": 16
+    },
+    {
+      "team": "Cadillac",
+      "driver1": "unknown name",
+      "driver2": "unknown name",
+      "id": 17
+    },
+    {
+      "team": "Cadillac",
+      "driver1": "unknown name",
+      "driver2": "unknown name",
+      "id": 18
+    },
+    {
+      "team": "Cadillac",
+      "driver1": "unknown name",
+      "driver2": "unknown name",
+      "id": 19
+    },
+    {
+      "team": "Cadillac",
+      "driver1": "unknown name",
+      "driver2": "unknown name",
+      "id": 20
     }
   ],
   "comments": [

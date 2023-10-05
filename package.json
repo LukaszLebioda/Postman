@@ -4,7 +4,8 @@
   "description": "Some Postman practic",
   "main": "index.js",
   "scripts": {
-    "server": "json-server --watch db.json"
+    "server": "json-server --watch db.json",
+    "server2": "json-server --watch f1.json"
   },
   "repository": {
     "type": "git",
