@@ -22,7 +22,9 @@
       "team": "MacLaren",
       "driver1": "Lando Norris",
       "driver2": "Oscar Piastri",
-      "id": 4
+      "id": 4,
+      "dynamicVariable": "Kannapolis",
+      "driver3": "Lynn Braun IV"
     },
     {
       "team": "Aston Martin",
@@ -96,6 +98,30 @@
       "driver1": "unknown name",
       "driver2": "unknown name",
       "id": 20
+    },
+    {
+      "team": "Cadillac",
+      "driver1": "unknown name",
+      "driver2": "unknown name",
+      "id": 21
+    },
+    {
+      "team": "Cadillac",
+      "driver1": "unknown name",
+      "driver2": "unknown name",
+      "id": 22
+    },
+    {
+      "team": "Cadillac",
+      "driver1": "unknown name",
+      "driver2": "unknown name",
+      "id": 23
+    },
+    {
+      "team": "Cadillac",
+      "driver1": "unknown name",
+      "driver2": "unknown name",
+      "id": 24
     }
   ],
   "comments": [
