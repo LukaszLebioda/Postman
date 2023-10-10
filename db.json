@@ -23,8 +23,9 @@
       "driver1": "Lando Norris",
       "driver2": "Oscar Piastri",
       "id": 4,
-      "dynamicVariable": "Kannapolis",
-      "driver3": "Lynn Braun IV"
+      "dynamicVariable": "{{city}}",
+      "driver3": "Armando Stroman",
+      "city": "New Jedediah"
     },
     {
       "team": "Aston Martin",
@@ -122,6 +123,44 @@
       "driver1": "unknown name",
       "driver2": "unknown name",
       "id": 24
+    },
+    {
+      "team": "Cadillac",
+      "driver1": "unknown name",
+      "driver2": "unknown name",
+      "id": 25
+    },
+    {
+      "team": "Cadillac",
+      "driver1": "unknown name",
+      "driver2": "unknown name",
+      "id": 26
+    },
+    {
+      "team": "Cadillac",
+      "driver1": "unknown name",
+      "driver2": "unknown name",
+      "id": 27
+    },
+    {
+      "title": "tytuł",
+      "author": "autor",
+      "id": 28
+    },
+    {
+      "title": "tytuł",
+      "author": "autor",
+      "id": 29
+    },
+    {
+      "title": "{{tytuł}}",
+      "author": "{{autor}}",
+      "id": 30
+    },
+    {
+      "title": "{{tytuł}}",
+      "author": "{{autor}}",
+      "id": 31
     }
   ],
   "comments": [
@@ -129,6 +168,142 @@
       "id": 1,
       "body": "some comment",
       "postId": 1
+    },
+    {
+      "body": "{{comment}}}}",
+      "username": "{{username}}",
+      "postId": 1,
+      "id": 2
+    },
+    {
+      "body": "{{comment}}",
+      "username": "{{username}}",
+      "postId": 1,
+      "id": 3
+    },
+    {
+      "body": "{{comment}}",
+      "username": "{{username}}",
+      "postId": 1,
+      "id": 4
+    },
+    {
+      "body": "I am a boss",
+      "username": "matt",
+      "postId": 1,
+      "id": 5
+    },
+    {
+      "body": "you are not",
+      "username": "tom",
+      "postId": 1,
+      "id": 6
+    },
+    {
+      "body": "Boys calm down",
+      "username": "andrew",
+      "postId": 1,
+      "id": 7
+    },
+    {
+      "body": "I am a boss",
+      "username": "matt",
+      "id": 8
+    },
+    {
+      "body": "you are not",
+      "username": "tom",
+      "id": 9
+    },
+    {
+      "body": "Boys calm down",
+      "username": "andrew",
+      "id": 10
+    },
+    {
+      "body": "{{comment}}",
+      "username": "{{username}}",
+      "id": 11
+    },
+    {
+      "body": "{{comment}}",
+      "username": "{{username}}",
+      "id": 12
+    },
+    {
+      "body": "I am a boss",
+      "username": "matt",
+      "id": 13
+    },
+    {
+      "body": "you are not",
+      "username": "tom",
+      "id": 14
+    },
+    {
+      "body": "Boys calm down",
+      "username": "andrew",
+      "id": 15
+    },
+    {
+      "body": "{{comment}}",
+      "username": "{{username}}",
+      "id": 16
+    },
+    {
+      "body": "{{comment}}",
+      "username": "{{username}}",
+      "id": 17
+    },
+    {
+      "body": "I am a boss",
+      "username": "matt",
+      "id": 18
+    },
+    {
+      "body": "you are not",
+      "username": "tom",
+      "id": 19
+    },
+    {
+      "body": "Boys calm down",
+      "username": "andrew",
+      "id": 20
+    },
+    {
+      "body": "I am a boss",
+      "username": "matt",
+      "id": 21
+    },
+    {
+      "body": "you are not",
+      "username": "tom",
+      "id": 22
+    },
+    {
+      "body": "Boys calm down",
+      "username": "andrew",
+      "id": 23
+    },
+    {
+      "body": "{{comment}}",
+      "username": "{{username}}",
+      "id": 24
+    },
+    {
+      "body": "I am a boss",
+      "username": "matt",
+      "id": 25
+    },
+    {
+      "body": "you are not",
+      "username": "tom",
+      "id": 26
+    },
+    {
+      "body": "Boys calm down",
+      "username": "andrew",
+      "id": 27
     }
   ],
   "profile": {

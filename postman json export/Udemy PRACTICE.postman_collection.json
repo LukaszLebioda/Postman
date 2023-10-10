@@ -1,0 +1,162 @@
+{
+	"info": {
+		"_postman_id": "41927796-f3f6-4669-9cfe-1d52d19cf9d8",
+		"name": "Udemy PRACTICE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25289468"
+	},
+	"item": [
+		{
+			"name": "practice: add new post and get its id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Status code: Code is 200\r",
+							"// verify server response\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"// tworzymy zmienną globalną 'responseId'\r",
+							"// w której przechowamy wartość 'id' z jsona (który przyjdzie w odpowiedzi)\r",
+							"pm.globals.set(\"responseId\", pm.response.json().id);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"team\": \"Cadillac\",\r\n        \"driver1\": \"unknown name\",\r\n        \"driver2\": \"unknown name\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{baseURL}}:3000/posts",
+					"protocol": "http",
+					"host": [
+						"{{baseURL}}"
+					],
+					"port": "3000",
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "practice: delete post with id from previous test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Status code: Code is 200\r",
+							"// verify server response\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{baseURL}}:3000/posts/{{responseId}}",
+					"protocol": "http",
+					"host": [
+						"{{baseURL}}"
+					],
+					"port": "3000",
+					"path": [
+						"posts",
+						"{{responseId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "comment generator (reads data from json)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"// uruchamiamy całą kolekcję\r",
+							"// w menu uruchamiania kolekcji wybieramy 'select file'\r",
+							"// wybieramy 'comments.json'\r",
+							"// w pliku są 3 zestawy danych testowych 'username' + 'comment'\r",
+							"// czyli są 3 iteracje - nasz test wykona się 3 razy, dla każdego zestawu raz\r",
+							"\r",
+							"// najpierw patrzymy, jak są zatytułowane klucze - 'username', 'comment' (to będą nasze zmienne potrzebne w ciele żądania)\r",
+							"// następnie w ciele żądania posyłamy te nasze zmienne jako wartości kluczy {{zmienna}}\r",
+							"\r",
+							"// wpisujemy snippet na sprawdzenie jsona (odpowiedzi serwera) na tytuł i autora\r",
+							"pm.test(\"Verify value of comment - from json file\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.body).to.eql(pm.iterationData.get(\"comment\"));\r",
+							"});\r",
+							"pm.test(\"Verify value of username - from json file\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.username).to.eql(pm.iterationData.get(\"username\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n        \"body\": \"{{comment}}\",\r\n        \"username\": \"{{username}}\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{baseURL}}:3000/comments",
+					"protocol": "http",
+					"host": [
+						"{{baseURL}}"
+					],
+					"port": "3000",
+					"path": [
+						"comments"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

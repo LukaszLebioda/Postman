@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "301e9979-8f79-4f2e-9f66-ccf19f7085f4",
-		"name": "Udemy",
+		"name": "Udemy MAIN",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "25289468"
 	},
@@ -258,9 +258,28 @@
 							"pm.test(\"Verify value of driver2 property - from global variable\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(jsonData.driver2).to.eql(pm.globals.get(\"futureChampionDriver\"));\r",
-							"    pm.expect(jsonData.driver3).to.eql(pm.globals.get(\"futureChampionDriver\"));\r",
+							"});\r",
+							"pm.test(\"Verify value of driver3 & city property - from dynamic variable\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.driver3).to.eql(pm.environment.get(\"fullName\"));\r",
+							"    pm.expect(jsonData.city).to.eql(pm.environment.get(\"city\"));\r",
 							"});\r",
 							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// setting a dynamic variable\r",
+							"//pm.environment.set(\"variable_key\", \"variable_value\");\r",
+							"// czyli przed wysłaniem żądania ustawiamy zmienną środowiskową o nazwie 'fullName'\r",
+							"// do której przypisujemy wartość zmiennej wygenerowanej dynamicznie\r",
+							"// i możemy w body albo teście odwołać się do tej zmiennej\r",
+							"pm.environment.set(\"fullName\", pm.variables.replaceIn('{{$randomFullName}}'))\r",
+							"pm.environment.set(\"city\", pm.variables.replaceIn('{{$randomCity}}'))"
 						],
 						"type": "text/javascript"
 					}
@@ -271,7 +290,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "    {\r\n        \"driver2\": \"{{futureChampionDriver}}\",\r\n        \"driver3\": \"{{$randomFullName}}\",\r\n        \"dynamicVariable\": \"{{$randomCity}}\"\r\n    }",
+					"raw": "    {\r\n        \"driver2\": \"{{futureChampionDriver}}\",\r\n        \"driver3\": \"{{fullName}}\",\r\n        \"city\": \"{{city}}\"\r\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
