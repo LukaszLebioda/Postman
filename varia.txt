@@ -2,17 +2,8 @@ https://reqres.in/
 https://dummy.restapiexample.com/
 https://jsonplaceholder.typicode.com/
 
-BYŁO: "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-JEST: "scripts": {
-    "server": "json-server --watch db.json"
-  },
-  CZYLI: npm run server;
-
 I. Aplikacja JSON-SERVER symuluje bazę danych - tworzy plik db.json z postami. Dokumentacja: https://github.com/typicode/json-server. 
 
-==>> FOTO1
 II. Aby pobrać POSTY:
 
 1. Musimy znać hosta: http://localhost i port, na którym działa: 3000.
