@@ -7,41 +7,22 @@
 	},
 	"item": [
 		{
-			"name": "Valentin (UD)",
+			"name": "Valentin: E-commerce (UD)",
 			"item": [
 				{
-					"name": "api documentation",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://github.com/vdespa/Postman-Complete-Guide-API-Testing/blob/main/simple-grocery-store-api.md",
-							"protocol": "https",
-							"host": [
-								"github",
-								"com"
-							],
-							"path": [
-								"vdespa",
-								"Postman-Complete-Guide-API-Testing",
-								"blob",
-								"main",
-								"simple-grocery-store-api.md"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "api status (response time)",
+					"name": "api status (docs, response time)",
 					"event": [
 						{
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"/* ",
-									"https://github.com/vdespa/Postman-Complete-Guide-API-Testing/blob/main/simple-grocery-store-api.md",
+									"/*",
+									"documentation: https://github.com/vdespa/Postman-Complete-Guide-API-Testing/blob/main/simple-grocery-store-api.md",
+									"baseUrl1: https://simple-grocery-store-api.glitch.me",
+									"baseUrl2: https://simple-grocery-api.store",
 									"*/",
+									"",
+									"console.clear();",
 									"",
 									""
 								],
@@ -53,14 +34,14 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"/* ",
-									"https://github.com/vdespa/Postman-Complete-Guide-API-Testing/blob/main/simple-grocery-store-api.md",
-									"*/",
-									"",
-									"pm.test(\"Response time is within acceptable range\", function () {",
-									"  pm.expect(pm.response.responseTime).to.be.below(2000);",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
 									"});",
-									""
+									"",
+									"pm.test(\"Verify correct api status\", function () {",
+									"    const response = pm.response.json();",
+									"    pm.expect(response.status).to.eql(\"UP\");",
+									"});"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -98,9 +79,15 @@
 					],
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "doopa",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "{{baseUrlValentin}}/products?category=coffee&results=2",
+							"raw": "{{baseUrlValentin}}/products?results=20",
 							"host": [
 								"{{baseUrlValentin}}"
 							],
@@ -110,7 +97,8 @@
 							"query": [
 								{
 									"key": "category",
-									"value": "coffee"
+									"value": "coffee",
+									"disabled": true
 								},
 								{
 									"key": "available",
@@ -119,7 +107,12 @@
 								},
 								{
 									"key": "results",
-									"value": "2"
+									"value": "20"
+								},
+								{
+									"key": "category",
+									"value": "fresh-produce",
+									"disabled": true
 								}
 							]
 						}
@@ -127,7 +120,7 @@
 					"response": []
 				},
 				{
-					"name": "a single product (path variable)",
+					"name": "single product (path variable)",
 					"event": [
 						{
 							"listen": "test",
@@ -164,7 +157,44 @@
 					"response": []
 				},
 				{
-					"name": "a single product (query param + path variable)",
+					"name": "check if endpoint is working",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "HEAD",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrlValentin}}/products/:productId/",
+							"host": [
+								"{{baseUrlValentin}}"
+							],
+							"path": [
+								"products",
+								":productId",
+								""
+							],
+							"variable": [
+								{
+									"key": "productId",
+									"value": "4643"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "single product (query param + path variable)",
 					"event": [
 						{
 							"listen": "test",
@@ -206,7 +236,7 @@
 					"response": []
 				},
 				{
-					"name": "create a new cart",
+					"name": "create new cart",
 					"event": [
 						{
 							"listen": "test",
@@ -247,7 +277,7 @@
 					"response": []
 				},
 				{
-					"name": "a created cart",
+					"name": "cart",
 					"event": [
 						{
 							"listen": "test",
@@ -275,7 +305,7 @@
 							"variable": [
 								{
 									"key": "cartId",
-									"value": "fcRsNWB2ULcWs8j0P_bAn"
+									"value": "{{cartId}}"
 								}
 							]
 						}
@@ -308,7 +338,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n   \"productId\": 4643\n}",
+							"raw": "{\n   \"productId\": 4641\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -328,7 +358,7 @@
 							"variable": [
 								{
 									"key": "cartId",
-									"value": "fcRsNWB2ULcWs8j0P_bAn"
+									"value": "{{cartId}}"
 								}
 							]
 						}
@@ -336,7 +366,7 @@
 					"response": []
 				},
 				{
-					"name": "items from a created cart",
+					"name": "items in the cart",
 					"event": [
 						{
 							"listen": "test",
@@ -372,7 +402,7 @@
 							"variable": [
 								{
 									"key": "cartId",
-									"value": "fcRsNWB2ULcWs8j0P_bAn"
+									"value": "{{cartId}}"
 								}
 							]
 						}
@@ -380,7 +410,7 @@
 					"response": []
 				},
 				{
-					"name": "register new api client",
+					"name": "register new api client (token acquired)",
 					"event": [
 						{
 							"listen": "test",
@@ -405,7 +435,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n   \"clientName\": \"Wookie's Postman\",\n   \"clientEmail\": \"dupa2@example.com\"\n}",
+							"raw": "{\n   \"clientName\": \"Wookie's Postman\",\n   \"clientEmail\": \"dupa3@example.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -425,7 +455,7 @@
 					"response": []
 				},
 				{
-					"name": "submit an order",
+					"name": "submit an order (token required)",
 					"event": [
 						{
 							"listen": "test",
@@ -445,6 +475,9 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -460,7 +493,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"cartId\": \"fcRsNWB2ULcWs8j0P_bAn\",\n    \"customerName\": \"{{$randomFullName}}\"\n}",
+							"raw": "{\n    \"cartId\": \"N8uMNrAlt9ZxE43M1_uOF\",\n    \"customerName\": \"{{$randomFullName}}\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -474,6 +507,771 @@
 							],
 							"path": [
 								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all orders (token required)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// pm.test(\"Status code is 200\", function () {",
+									"//     pm.response.to.have.status(200);",
+									"// });",
+									"",
+									"// pm.test(\"Response is empty array\", function () {",
+									"//     const jsonData = pm.response.json();",
+									"//     pm.expect(jsonData).to.eql([]);",
+									"// });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessTokenValentin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrlValentin}}/orders",
+							"host": [
+								"{{baseUrlValentin}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// pm.test(\"Status code is 200\", function () {",
+									"//     pm.response.to.have.status(200);",
+									"// });",
+									"",
+									"// pm.test(\"Response is empty array\", function () {",
+									"//     const jsonData = pm.response.json();",
+									"//     pm.expect(jsonData).to.eql([]);",
+									"// });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessTokenValentin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"customerName\": \"Wookie's Postman\",\n \"comment\": \"Pick up at 12:00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlValentin}}/orders/:orderId",
+							"host": [
+								"{{baseUrlValentin}}"
+							],
+							"path": [
+								"orders",
+								":orderId"
+							],
+							"variable": [
+								{
+									"key": "orderId",
+									"value": "pXsY2eidnqGAUB9St34Hc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update item in cart (quantity)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// pm.test(\"Status code is 200\", function () {",
+									"//     pm.response.to.have.status(200);",
+									"// });",
+									"",
+									"// pm.test(\"Response is empty array\", function () {",
+									"//     const jsonData = pm.response.json();",
+									"//     pm.expect(jsonData).to.eql([]);",
+									"// });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessTokenValentin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"quantity\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlValentin}}/carts/:cartId/items/:itemId",
+							"host": [
+								"{{baseUrlValentin}}"
+							],
+							"path": [
+								"carts",
+								":cartId",
+								"items",
+								":itemId"
+							],
+							"variable": [
+								{
+									"key": "cartId",
+									"value": "{{cartId}}"
+								},
+								{
+									"key": "itemId",
+									"value": "702598373"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "replace product in cart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// pm.test(\"Status code is 200\", function () {",
+									"//     pm.response.to.have.status(200);",
+									"// });",
+									"",
+									"// pm.test(\"Response is empty array\", function () {",
+									"//     const jsonData = pm.response.json();",
+									"//     pm.expect(jsonData).to.eql([]);",
+									"// });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessTokenValentin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\": 4643,\n    \"quantity\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlValentin}}/carts/:cartId/items/:itemId",
+							"host": [
+								"{{baseUrlValentin}}"
+							],
+							"path": [
+								"carts",
+								":cartId",
+								"items",
+								":itemId"
+							],
+							"variable": [
+								{
+									"key": "cartId",
+									"value": "{{cartId}}"
+								},
+								{
+									"key": "itemId",
+									"value": "702598373"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "item from cart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// pm.test(\"Status code is 200\", function () {",
+									"//     pm.response.to.have.status(200);",
+									"// });",
+									"",
+									"// pm.test(\"Response is empty array\", function () {",
+									"//     const jsonData = pm.response.json();",
+									"//     pm.expect(jsonData).to.eql([]);",
+									"// });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessTokenValentin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrlValentin}}/carts/:cartId/items/:itemId",
+							"host": [
+								"{{baseUrlValentin}}"
+							],
+							"path": [
+								"carts",
+								":cartId",
+								"items",
+								":itemId"
+							],
+							"variable": [
+								{
+									"key": "cartId",
+									"value": "{{cartId}}"
+								},
+								{
+									"key": "itemId",
+									"value": "704733113"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessTokenValentin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrlValentin}}/orders/:orderId",
+							"host": [
+								"{{baseUrlValentin}}"
+							],
+							"path": [
+								"orders",
+								":orderId"
+							],
+							"variable": [
+								{
+									"key": "orderId",
+									"value": "l_743UIyi8xF44HxLM-QB"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessTokenValentin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrlValentin}}/orders/:orderId",
+							"host": [
+								"{{baseUrlValentin}}"
+							],
+							"path": [
+								"orders",
+								":orderId"
+							],
+							"variable": [
+								{
+									"key": "orderId",
+									"value": "l_743UIyi8xF44HxLM-QB"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "order Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessTokenValentin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://valentines-book-list.glitch.me/books/lists?list=non-fiction&api-key=8fhg93xkjd38fhg834jdfgjd&page=3",
+							"protocol": "https",
+							"host": [
+								"valentines-book-list",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"books",
+								"lists"
+							],
+							"query": [
+								{
+									"key": "list",
+									"value": "non-fiction"
+								},
+								{
+									"key": "api-key",
+									"value": "8fhg93xkjd38fhg834jdfgjd"
+								},
+								{
+									"key": "page",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Valentin: Trello API (UD)",
+			"item": [
+				{
+					"name": "get all boards",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{baseUrlTrello}}/1/members/me/boards?key={{trelloApiKey}}&token={{trelloToken}}",
+							"protocol": "https",
+							"host": [
+								"{{baseUrlTrello}}"
+							],
+							"path": [
+								"1",
+								"members",
+								"me",
+								"boards"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{trelloApiKey}}"
+								},
+								{
+									"key": "token",
+									"value": "{{trelloToken}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get single board",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://{{baseUrlTrello}}/1/boards/:id?key={{trelloApiKey}}&token={{trelloToken}}",
+							"protocol": "https",
+							"host": [
+								"{{baseUrlTrello}}"
+							],
+							"path": [
+								"1",
+								"boards",
+								":id"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{trelloApiKey}}"
+								},
+								{
+									"key": "token",
+									"value": "{{trelloToken}}"
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "67caec5d5045f0003d747305",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create a board",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://{{baseUrlTrello}}/1/boards/?name=MyPostman&key={{trelloApiKey}}&token={{trelloToken}}",
+							"protocol": "https",
+							"host": [
+								"{{baseUrlTrello}}"
+							],
+							"path": [
+								"1",
+								"boards",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "MyPostman"
+								},
+								{
+									"key": "key",
+									"value": "{{trelloApiKey}}"
+								},
+								{
+									"key": "token",
+									"value": "{{trelloToken}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create a list (of a board)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{baseUrlTrello}}/1/lists?key={{trelloApiKey}}&token={{trelloToken}}&idBoard=67b75e920329fdb6244ff1db&name=DONE",
+							"protocol": "https",
+							"host": [
+								"{{baseUrlTrello}}"
+							],
+							"path": [
+								"1",
+								"lists"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{trelloApiKey}}"
+								},
+								{
+									"key": "token",
+									"value": "{{trelloToken}}"
+								},
+								{
+									"key": "idBoard",
+									"value": "67b75e920329fdb6244ff1db"
+								},
+								{
+									"key": "name",
+									"value": "DONE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create a card (of a list)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{baseUrlTrello}}/1/cards?key={{trelloApiKey}}&token={{trelloToken}}&idList=67c1c67b9467dd9c23a87fbc&name=Sign up for Trello",
+							"protocol": "https",
+							"host": [
+								"{{baseUrlTrello}}"
+							],
+							"path": [
+								"1",
+								"cards"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{trelloApiKey}}"
+								},
+								{
+									"key": "token",
+									"value": "{{trelloToken}}"
+								},
+								{
+									"key": "idList",
+									"value": "67c1c67b9467dd9c23a87fbc"
+								},
+								{
+									"key": "name",
+									"value": "Sign up for Trello"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update a card",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{baseUrlTrello}}/1/cards/:id?key={{trelloApiKey}}&token={{trelloToken}}&idList=67c1c9d6cb654f7b09338dec",
+							"protocol": "https",
+							"host": [
+								"{{baseUrlTrello}}"
+							],
+							"path": [
+								"1",
+								"cards",
+								":id"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{trelloApiKey}}"
+								},
+								{
+									"key": "token",
+									"value": "{{trelloToken}}"
+								},
+								{
+									"key": "idList",
+									"value": "67c1c9d6cb654f7b09338dec"
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "67c1c69207b26560ffdb8242"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete a board",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://{{baseUrlTrello}}/1/boards/:id?key={{trelloApiKey}}&token={{trelloToken}}",
+							"protocol": "https",
+							"host": [
+								"{{baseUrlTrello}}"
+							],
+							"path": [
+								"1",
+								"boards",
+								":id"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{trelloApiKey}}"
+								},
+								{
+									"key": "token",
+									"value": "{{trelloToken}}"
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "67caec5d5045f0003d747305"
+								}
 							]
 						}
 					},
@@ -513,6 +1311,26 @@
 		{
 			"key": "accessTokenValentin",
 			"value": "YOUR TOKEN HERE",
+			"type": "string"
+		},
+		{
+			"key": "cartId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "baseUrlTrello",
+			"value": "api.trello.com",
+			"type": "string"
+		},
+		{
+			"key": "trelloApiKey",
+			"value": "trello API key here",
+			"type": "string"
+		},
+		{
+			"key": "trelloToken",
+			"value": "trello token here",
 			"type": "string"
 		}
 	]
